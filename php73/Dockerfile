@@ -80,6 +80,9 @@ RUN apt-get update && apt-get install -y \
     && pecl install imagick \
 	&& docker-php-ext-enable imagick
 
+# PNG Quant
+RUN apt-get install -y pngquant
+
 # OPcache
 RUN docker-php-ext-install opcache
 
