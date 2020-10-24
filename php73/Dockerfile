@@ -89,7 +89,7 @@ RUN docker-php-ext-install opcache
 # PGSQL
 RUN apt-get update \
   && apt-get install --no-install-recommends -y libpq-dev \
-  && docker-php-ext-install pgsql \
+  && docker-php-ext-install pgsql pdo_pgsql \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
