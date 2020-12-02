@@ -69,10 +69,10 @@ RUN docker-php-ext-install mbstring pdo pdo_mysql \
     && docker-php-ext-enable sqlsrv pdo_sqlsrv xdebug
 
 # Install wkhtmltopdf
-RUN apt-get update -y && apt-get install wkhtmltopdf xvfb xauth xfonts-base xfonts-75dpi fontconfig -y && \
-    echo 'xvfb-run --server-args="-screen 0, 1024x768x24" /usr/bin/wkhtmltopdf $*' > /usr/bin/wkhtmltopdf.sh && \
-	chmod a+rx /usr/bin/wkhtmltopdf.sh && \
-	ln -s /usr/bin/wkhtmltopdf.sh /usr/local/sbin/wkhtmltopdf
+RUN apt-get update -y && apt-get install wkhtmltopdf xvfb xauth xfonts-base xfonts-75dpi fontconfig libssl1.0-dev -y && \
+    wget https://github.com/h4cc/wkhtmltopdf-amd64/raw/master/bin/wkhtmltopdf-amd64 -O /usr/bin/wkhtmltopdf && \
+	chmod a+rx /usr/bin/wkhtmltopdf && \
+	ln -s /usr/bin/wkhtmltopdf /usr/local/sbin/wkhtmltopdf
 
 # Install php imagick
 RUN apt-get update && apt-get install -y \
